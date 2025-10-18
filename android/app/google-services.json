@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86729925177",
+    "project_id": "cook-2d028",
+    "storage_bucket": "cook-2d028.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86729925177:android:eaade2cbe37107e81ea3e8",
+        "android_client_info": {
+          "package_name": "com.example.appgreenfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdXgZr2EgKbuqFHjjncMJ4l-C8EuuQOhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,79 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Correct place for plugin usage
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')?.toInteger() ?: 1
+def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
+def compileSdkVersion = localProperties.getProperty('flutter.compileSdkVersion')?.toInteger() ?: 34
+def minSdkVersion = localProperties.getProperty('flutter.minSdkVersion')?.toInteger() ?: 23
+def targetSdkVersion = localProperties.getProperty('flutter.targetSdkVersion')?.toInteger() ?: 34
+
+android {
+    namespace "com.example.appgreenfood"
+    compileSdkVersion compileSdkVersion
+    ndkVersion "27.0.12077973"
+
+    defaultConfig {
+        applicationId "com.example.appgreenfood"
+        minSdkVersion minSdkVersion
+        targetSdkVersion targetSdkVersion
+        versionCode flutterVersionCode
+        versionName flutterVersionName
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug // Adjust if you have a release signing config
+        }
+    }
+    buildscript {
+    repositories {
+        google() // Make sure this repository is included
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2' // Adjust to your Gradle version
+        classpath 'com.google.gms:google-services:4.3.15' // Include this with a specific version
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+}
+
+
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.4')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+}
+
+flutter {
+    source "../.."
+}
